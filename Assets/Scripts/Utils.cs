@@ -14,4 +14,15 @@ public static class Utils
 
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
+
+    public static int Remap(this int value, int from1, int to1, int from2, int to2, bool clamp = false)
+    {
+        if (value > to1 && clamp)
+            return to2;
+
+        if (value < from1 && clamp)
+            return from2;
+
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
 }
