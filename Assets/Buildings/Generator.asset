@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008a10976c63ccb4ca7c8444ea73cad1, type: 3}
+  m_Name: Generator
+  m_EditorClassIdentifier: 
+  buildingName: Generator
+  buildingHologramPrefab: {fileID: 2083582393530092215, guid: 3d0c7c60462fb224bbda38036760c01c,
+    type: 3}
+  buildingPrefab: {fileID: 2083582393530092215, guid: ac02c0f8783645947849db80615818f6,
+    type: 3}
