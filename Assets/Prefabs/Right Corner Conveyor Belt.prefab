@@ -259,7 +259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2643214035426011939}
   - component: {fileID: 2643214035426011937}
-  - component: {fileID: 7836046536350533515}
   - component: {fileID: 9038960360344635527}
   - component: {fileID: 2643214035426011936}
   m_Layer: 7
@@ -304,19 +303,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 0.1, z: 0.95}
   m_Center: {x: 0.025, y: 0.7, z: -0.025}
---- !u!114 &7836046536350533515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643214035426011942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690841808e1453949a2070d731ecf5cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingName: Right Corner Conveyor Belt
 --- !u!65 &9038960360344635527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -342,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a3c50738bf1204780067ff52057cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingName: Right Corner Conveyor Belt
   transportEnabled: 1
   transportDirection: 2
   transportSpeed: 5

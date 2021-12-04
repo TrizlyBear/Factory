@@ -259,7 +259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2643214035426011939}
   - component: {fileID: 2643214035426011937}
-  - component: {fileID: 3720396931621382665}
   - component: {fileID: 377290526656830071}
   - component: {fileID: 2643214035426011936}
   m_Layer: 7
@@ -301,19 +300,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &3720396931621382665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643214035426011942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690841808e1453949a2070d731ecf5cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingName: Straight Conveyor Belt
 --- !u!65 &377290526656830071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -339,6 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a3c50738bf1204780067ff52057cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingType: {fileID: 11400000, guid: 17911c96b64feb74e89eaf6d1cb03334, type: 2}
+  buildingName: Straight Conveyor Belt
   transportEnabled: 1
   transportDirection: 0
   transportSpeed: 5

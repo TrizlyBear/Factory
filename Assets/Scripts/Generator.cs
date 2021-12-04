@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour, IInteractable
+public class Generator : Building
 {
     public bool generationEnabled = true;
 
@@ -37,10 +37,5 @@ public class Generator : MonoBehaviour, IInteractable
     {
         int n = Random.Range(0, generatedObjects.Count);
         return generatedObjects[n];
-    }
-
-    public void Interact()
-    {
-        
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Incinerator : MonoBehaviour
+public class Incinerator : Building
 {
     public List<string> incinerationTags = new List<string>();
 

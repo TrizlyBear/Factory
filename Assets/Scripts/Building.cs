@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    public string buildingName;
+    public BuildingAsset buildingType;
+
+    public SavedBuilding GetSerializedBuilding()
+    {
+        return new SavedBuilding(buildingType.buildingName, transform.position, (int)transform.eulerAngles.y);
+    }
 }

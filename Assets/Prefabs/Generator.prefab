@@ -124,7 +124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2083582393530092208}
   - component: {fileID: 7048653968236326442}
-  - component: {fileID: 3258504848159768884}
   - component: {fileID: 2083582393530092209}
   m_Layer: 7
   m_Name: Generator
@@ -165,19 +164,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3258504848159768884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083582393530092215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690841808e1453949a2070d731ecf5cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingName: Generator
 --- !u!114 &2083582393530092209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5380ae22026ed4eadb31cc99a503da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingType: {fileID: 11400000, guid: a0e243ba4af7a1e46b8eb22254798c1c, type: 2}
+  buildingName: Generator
   generationEnabled: 1
   generatedObjects:
   - {fileID: 5789269980868846509, guid: 127c0d270c7f3fd4594969bdb5e6edc5, type: 3}

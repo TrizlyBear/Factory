@@ -13,6 +13,5 @@ public class BuildingHologram : MonoBehaviour
     private void Update()
     {
         _isColliding = Physics.CheckBox(transform.position + center, halfSize);
-        Debug.Log(IsColliding);
     }
 }

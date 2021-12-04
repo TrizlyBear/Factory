@@ -47,4 +47,13 @@ public class OptionCycle : MonoBehaviour
 
         onValueChanged.Invoke(currentIndex);
     }
+
+    public void SetOption(int index)
+    {
+        if (index > 0 && index < options.Count - 1)
+        {
+            currentIndex = index;
+            onValueChanged.Invoke(currentIndex);
+        }
+    }
 }

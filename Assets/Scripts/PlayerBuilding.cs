@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public enum BuildingMode
@@ -23,7 +24,7 @@ public class PlayerBuilding : MonoBehaviour
 
     [Space]
 
-    public Transform BuildingsParent;
+    public Transform buildingsParent;
     public Transform cam;
     public LayerMask buildableLayers;
     public float range = 10f;
@@ -37,12 +38,15 @@ public class PlayerBuilding : MonoBehaviour
 
     public List<BuildingAsset> buildings = new List<BuildingAsset>();
 
-    [SerializeField] private int selectedBuildingIndex = 0;
+    private int selectedBuildingIndex = 0;
     public BuildingAsset selectedBuilding = null;
 
     [Header("Outline")]
     public Color destroyOutlineColor = Color.white;
     public float destroyOutlineWidth = 10f;
+
+    public UnityEvent<Building> onBuildingPlaced = new UnityEvent<Building>();
+    public UnityEvent<Building> onBuildingDestroyed = new UnityEvent<Building>();
 
     private BuildingMode previousBuildingMode;
 
@@ -151,7 +155,10 @@ public class PlayerBuilding : MonoBehaviour
                 {
                     if (!holo.IsColliding)
                     {
-                        Instantiate(selectedBuilding.buildingPrefab, holoPos, Quaternion.Euler(0, currentRotation, 0)).transform.parent = BuildingsParent;
+                        Building building = Instantiate(selectedBuilding.buildingPrefab, holoPos, Quaternion.Euler(0, currentRotation, 0)).GetComponent<Building>();
+                        building.transform.parent = buildingsParent;
+
+                        onBuildingPlaced.Invoke(building);
                     }
                 }
             }
@@ -181,7 +188,7 @@ public class PlayerBuilding : MonoBehaviour
 
                     currentDestroyTarget = obj;
 
-                    player.uiModule.targetBuildingTypeText.text = obj.GetComponent<Building>().buildingName;
+                    player.uiModule.targetBuildingTypeText.text = obj.GetComponent<Building>().buildingType.buildingName;
 
                     SetOutline(obj, true);
                 }
@@ -208,7 +215,11 @@ public class PlayerBuilding : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (currentDestroyTarget != null)
+                {
+                    onBuildingDestroyed.Invoke(currentDestroyTarget.GetComponent<Building>());
+
                     Destroy(currentDestroyTarget);
+                }
             }
         }
         else
