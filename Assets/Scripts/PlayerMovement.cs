@@ -9,11 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [Space]
 
     public Rigidbody rigidBody;
+    public CapsuleCollider playerCollider;
 
     [Header("Settings")]
     public float walkSpeed = 5f;
     public float sprintSpeed = 10f;
     public float jumpHeight = 1.5f;
+    public float slidingStartSpeed = 15f;
+    public float slidingBrakeSpeed = 5f;
+    public float slidingPosOffset = 0.5f;
 
     [Header("Ground Check")]
     public Transform groundCheckPoint;

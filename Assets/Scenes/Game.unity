@@ -191,9 +191,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5678882}
   rigidBody: {fileID: 5678878}
+  playerCollider: {fileID: 5678877}
   walkSpeed: 5
   sprintSpeed: 10
   jumpHeight: 0.75
+  slidingStartSpeed: 15
+  slidingBrakeSpeed: 5
+  slidingPosOffset: 0.5
   groundCheckPoint: {fileID: 1101903681}
   groundCheckDistance: 0.2
   groundCheckMask:
