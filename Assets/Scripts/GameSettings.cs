@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Settings
@@ -22,6 +23,9 @@ public class Settings
 
 public class GameSettings : MonoBehaviour
 {
+    private static GameSettings _instance;
+    public static GameSettings Instance { get { return _instance; } }
+
     public Settings currentSettings = new Settings();
 
     [Header("UI Elements")]
@@ -39,12 +43,25 @@ public class GameSettings : MonoBehaviour
 
     public OptionCycle mapLockedNorthSetting;
 
+    [Header("Setting Objects")]
+    public AudioMixer masterMixer;
+
     private Resolution[] resolutions;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     private void Start()
     {
-        LoadSettings();
-
         resolutions = Screen.resolutions;
 
         List<string> options = new List<string>();
@@ -55,6 +72,8 @@ public class GameSettings : MonoBehaviour
         }
 
         resolutionSetting.options = options;
+
+        LoadSettings();
     }
 
     public void UpdateSettingsWindow()
@@ -82,6 +101,10 @@ public class GameSettings : MonoBehaviour
         {
             currentSettings = SavingSystem.LoadData<Settings>("gameSettings.settings");
         }
+        else
+        {
+            SaveSettings();
+        }
 
         UpdateSettingsWindow();
     }
@@ -92,12 +115,22 @@ public class GameSettings : MonoBehaviour
     {
         currentSettings.resolution = index;
 
+        Screen.SetResolution(resolutions[index].width, resolutions[index].height, Screen.fullScreen);
+
         SaveSettings();
     }
 
     public void SetWindowMode(int mode)
     {
         currentSettings.windowMode = mode;
+
+        Screen.fullScreenMode = mode switch
+        {
+            0 => FullScreenMode.ExclusiveFullScreen,
+            1 => FullScreenMode.FullScreenWindow,
+            2 => FullScreenMode.Windowed,
+            _ => FullScreenMode.Windowed,
+        };
 
         SaveSettings();
     }
@@ -106,12 +139,25 @@ public class GameSettings : MonoBehaviour
     {
         currentSettings.fpsLimit = index;
 
+        Application.targetFrameRate = index switch
+        {
+            0 => 999,
+            1 => 30,
+            2 => 60,
+            3 => 75,
+            4 => 90,
+            5 => 120,
+            _ => 999
+        };
+
         SaveSettings();
     }
 
     public void SetVsync(int i)
     {
         currentSettings.vSync = i == 0;
+
+        QualitySettings.vSyncCount = i == 0 ? 1 : 0;
 
         SaveSettings();
     }
@@ -140,16 +186,22 @@ public class GameSettings : MonoBehaviour
     public void SetMasterVolume(float volume)
     {
         currentSettings.masterVolume = volume.Remap(0f, 10f, -80f, 20f, true);
+
+        masterMixer.SetFloat("MasterVolume", currentSettings.masterVolume);
     }
 
     public void SetSfxVolume(float volume)
     {
         currentSettings.sfxVolume = volume.Remap(0f, 10f, -80f, 20f, true);
+
+        masterMixer.SetFloat("SfxVolume", currentSettings.sfxVolume);
     }
 
     public void SetMusicVolume(float volume)
     {
         currentSettings.musicVolume = volume.Remap(0f, 10f, -80f, 20f, true);
+
+        masterMixer.SetFloat("MusicVolume", currentSettings.musicVolume);
     }
 
     #endregion

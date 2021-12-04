@@ -19,6 +19,8 @@ public class MiniMap : MonoBehaviour
 
     private void Update()
     {
+        alwaysFaceNorth = GameSettings.Instance.currentSettings.mapLockedNorth;
+
         mapCamera.orthographicSize = zoomLevel;
 
         Vector3 playerPos = player.transform.position;

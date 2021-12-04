@@ -50,7 +50,7 @@ public class OptionCycle : MonoBehaviour
 
     public void SetOption(int index)
     {
-        if (index > 0 && index < options.Count - 1)
+        if (index >= 0 && index < options.Count)
         {
             currentIndex = index;
             onValueChanged.Invoke(currentIndex);
