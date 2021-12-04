@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.2f;
     public LayerMask groundCheckMask;
 
+    public bool isRunning = false;
     public bool isGrounded = false;
 
     private Vector3 moveInput;
@@ -34,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckDistance, groundCheckMask);
 
         moveInput = (transform.right * Input.GetAxisRaw("Horizontal") + transform.up * 0f + transform.forward * Input.GetAxisRaw("Vertical")).normalized;
+
+        isRunning = moveInput.sqrMagnitude > 0;
+
+        player.animationModule.isRunning = isRunning;
+
+        float speedMultiplier = Input.GetKey(KeyCode.LeftShift) ? 2f : 1.5f;
+        player.animationModule.SetValue("RunningSpeedMultiplier", speedMultiplier);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             jump = true;

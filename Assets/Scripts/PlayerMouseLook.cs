@@ -22,16 +22,21 @@ public class PlayerMouseLook : MonoBehaviour
 
     private void Update()
     {
+        sensitivity = GameSettings.Instance.currentSettings.sensitivity;
+
         float mouseX = Input.GetAxis("Mouse X") * (sensitivity * 100f) * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * (sensitivity * 100f) * Time.deltaTime;
 
         if (GameSettings.Instance.currentSettings.invertMouseY)
             mouseY = -mouseY;
 
-            xRotation -= mouseY;
+        xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            transform.Rotate(Vector3.up * mouseX);
+        }
     }
 }
