@@ -28,10 +28,14 @@ public class MiniMap : MonoBehaviour
         if (alwaysFaceNorth)
         {
             mapCamera.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+
+            playerMarker.eulerAngles = new Vector3(0f, 0f, -player.transform.eulerAngles.y);
         }
         else
         {
             mapCamera.transform.eulerAngles = new Vector3(90f, player.transform.eulerAngles.y, 0f);
+
+            playerMarker.eulerAngles = new Vector3(0f, 0f, 0f);
         }
     }
 }
