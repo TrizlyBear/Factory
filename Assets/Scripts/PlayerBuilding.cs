@@ -36,8 +36,6 @@ public class PlayerBuilding : MonoBehaviour
     public Color validPositionColor;
     public Color invalidPositionColor;
 
-    public List<BuildingAsset> buildings = new List<BuildingAsset>();
-
     private int selectedBuildingIndex = 0;
     public BuildingAsset selectedBuilding = null;
 
@@ -68,8 +66,8 @@ public class PlayerBuilding : MonoBehaviour
             previousBuildingMode = currentBuildingMode;
         }
 
-        if (buildings.Count != 0)
-            selectedBuilding = buildings[selectedBuildingIndex];
+        if (BuildingManager.Instance.buildingTypes.Count != 0)
+            selectedBuilding = BuildingManager.Instance.buildingTypes[selectedBuildingIndex];
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -101,7 +99,7 @@ public class PlayerBuilding : MonoBehaviour
             {
                 if (scrollDelta > 0)
                 {
-                    if (selectedBuildingIndex == buildings.Count - 1)
+                    if (selectedBuildingIndex == BuildingManager.Instance.buildingTypes.Count - 1)
                         selectedBuildingIndex = 0;
 
                     else
@@ -110,7 +108,7 @@ public class PlayerBuilding : MonoBehaviour
                 else
                 {
                     if (selectedBuildingIndex == 0)
-                        selectedBuildingIndex = buildings.Count - 1;
+                        selectedBuildingIndex = BuildingManager.Instance.buildingTypes.Count - 1;
 
                     else
                         selectedBuildingIndex--;

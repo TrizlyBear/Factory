@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscapeMenu : MonoBehaviour
 {
@@ -12,18 +13,20 @@ public class EscapeMenu : MonoBehaviour
 
     private void Update()
     {
+        menuOpened = escapeMenuWindow.activeSelf || settingsWindow.activeSelf;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            menuOpened = !menuOpened;
 
-            if (menuOpened)
+            if (!menuOpened)
                 ChangeWindow("Escape");
 
             else
                 ChangeWindow("Main");
 
-            Cursor.lockState = menuOpened ? CursorLockMode.None : CursorLockMode.Locked;
         }
+
+        Cursor.lockState = menuOpened ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void ChangeWindow(string window)
@@ -48,6 +51,6 @@ public class EscapeMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-
+        SceneManager.LoadScene(0);
     }
 }

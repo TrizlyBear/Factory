@@ -16,8 +16,10 @@ public class Generator : Building
 
     private float timePassed = 0f;
 
-    private void Update()
+    private new void Update()
     {
+        base.Update();
+
         if (generationEnabled)
             timePassed += Time.deltaTime;
 
