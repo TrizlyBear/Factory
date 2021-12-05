@@ -10,6 +10,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneLinux64
+          projectPath: ./
       - uses: actions/upload-artifact@v2
         with:
           name: Build-StandaloneLinux64
